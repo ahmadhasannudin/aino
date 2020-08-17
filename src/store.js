@@ -14,6 +14,9 @@ export default new Vuex.Store({
     updateStorage(state, { access, refresh }) {
       (state.accessToken = access), (state.refreshToken = refresh);
     },
+    destroyToken(state) {
+      (state.accessToken = null), (state.refreshToken = null);
+    },
   },
   getters: {
     loggedIn(state) {
@@ -39,6 +42,11 @@ export default new Vuex.Store({
             reject(err);
           });
       });
+    },
+    userLogout(context) {
+      if (context.getters.loggedIn) {
+        context.commit("destroyToken");
+      }
     },
   },
 });

@@ -14,6 +14,9 @@ export default new VueRouter({
       path: "/",
       name: "posts",
       component: Posts,
+      meta: {
+        requiresLogin: true,
+      },
     },
     {
       path: "/login",

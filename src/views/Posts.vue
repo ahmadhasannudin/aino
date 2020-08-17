@@ -20,6 +20,11 @@ import { getAPI } from "../axios-api";
 import { mapState } from "vuex";
 export default {
   name: "Posts",
+  onIdle() {
+    this.$store.dispatch("userLogout").then(() => {
+      this.$router.push({ name: "login" });
+    });
+  },
   components: {
     // NavBar,
   },
